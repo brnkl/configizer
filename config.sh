@@ -71,6 +71,7 @@ declare -A UDEVRULES
 # * To add multiple rules, create multiple lines with different rulenames
 # * An example rule is just below.
 # UDEVRULES[20-something]='ACTION==\"add\", SUBSYSTEM==\"net\", ATTRS{idVendor}==\"7392\", ATTRS{idProduct}==\"7811\", NAME=\"extAP\"\n'
+UDEVRULES[66]='ACTION==\"add\", SUBSYSTEMS==\"nvme\", KERNEL==\"nvme[0-9]n[0-9]\", ENV{ID_FS_USAGE}==\"filesystem\", RUN{program}+=\"/usr/bin/systemd-mount --no-block --automount=yes --bind-device --options=noexec,nosuid,nodev,sync --collect $devnode /run/mount/nvme\"\n'
 
 # Whether or not restart the engine if the supervisor restart failed.
 FORCE_SUPERVISOR_RESTART="no"
